@@ -1,0 +1,18 @@
+from bisect import bisect_right
+from collections import defaultdict
+
+
+class RangeFreqQuery:
+
+    def __init__(self, arr: List[int]):
+        pos=defaultdict(list)
+        for i,val in enumerate(arr):
+            pos[val].append(i)
+        self.pos=pos
+    def query(self, left: int, right: int, value: int) -> int:
+        a=self.pos[value]
+        return bisect_right(a,right)-bisect_right(a,left-1)
+
+# Your RangeFreqQuery object will be instantiated and called as such:
+# obj = RangeFreqQuery(arr)
+# param_1 = obj.query(left,right,value)
