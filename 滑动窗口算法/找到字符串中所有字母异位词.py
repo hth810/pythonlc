@@ -1,24 +1,27 @@
+from collections import Counter
+
+
 class Solution:
     def findAnagrams(self, s: str, p: str) -> List[int]:
-        need, window = {}, {}
-        slow, fast,valid = 0, 0,0
-        res = []
-        for i in p:
-            need[i] = need.get(i, 0) + 1
-        while fast < len(s):
-            c = s[fast]
-            fast += 1
+        need=Counter(p)
+        cnt={}
+        ans=[]
+        valid=0
+        l=0
+        for r,c in enumerate(s):
             if c in need:
-                window[c] = window.get(c, 0) + 1
-                if window[c] == need[c]:
-                    valid += 1
+                cnt[c]=cnt.get(c,0)+1
+                if cnt[c]==need[c]:
+                    valid+=1
             while valid == len(need):
-                if fast - slow == len(p):
-                    res.append(slow)
-                d = s[slow]
-                slow += 1
-                if d in need:
-                    if window[d] == need[d]:
-                        valid -= 1
-                    window[d] -= 1
-        return res
+                if r-l+1==len(p):
+                    ans.append(l)
+                d=s[l]
+                l += 1
+                if d in cnt:
+                    if cnt[d]==need[d]:
+                        valid-=1
+                    cnt[d]-=1
+                    if cnt[d]==0:
+                        del cnt[d]
+        return  ans
