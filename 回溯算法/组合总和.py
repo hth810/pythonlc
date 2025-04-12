@@ -1,22 +1,19 @@
 class Solution:
-    def __init__(self):
-        self.res = []
-
-    def traverse(self, candidates: List[int], target: int, track: List[int]) -> None:
-        if target == 0:
-            self.res.append(track.copy())
-            return
-        if target < 0:
-            return
-        for i in range(len(candidates)):
-            if candidates[i] > target:
-                continue
-            track.append(candidates[i])
-            self.traverse(candidates[i:], target - candidates[i], track)
-            track.pop()
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
-        track = []
-        self.traverse(candidates, target, track)
-        return self.res
-
-
+        candidates.sort()
+        n=len(candidates)
+        ans=[]
+        path=[]
+        def dfs(i,c):
+            if c==0:
+                ans.append(path.copy())
+                return
+            if c<0:
+                return
+            for j in range(i,-1,-1):
+                if j<c:
+                    path.append(candidates[j])
+                    dfs(j,c-candidates[j])
+                    path.pop()
+        dfs(n-1,target)
+        return ans
