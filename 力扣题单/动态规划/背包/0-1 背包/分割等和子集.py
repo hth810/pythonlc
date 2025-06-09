@@ -10,7 +10,7 @@ class Solution:
             return j>=nums[i] and dfs(i-1,j-nums[i]) or dfs(i-1,j)
         n=len(nums)
         s=sum(nums)
-        if s%2!=0:
+        if s%2:
             return False
         s//=2
         return dfs(n-1,s)

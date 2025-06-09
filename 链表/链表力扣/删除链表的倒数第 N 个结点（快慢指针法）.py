@@ -7,10 +7,10 @@ class Solution:
         dummy=ListNode(0)
         dummy.next=head
         p1=dummy
-        for i in range(n+1):
+        for _ in range(n+1):
             p1=p1.next
         p2=dummy
-        while p1!=None:
+        while p1:
             p1=p1.next
             p2=p2.next
         p2.next=p2.next.next

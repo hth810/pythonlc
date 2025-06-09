@@ -1,5 +1,3 @@
-
-
 MAP=["","",'abc','def','ghi','jkl','mno','pqrs','tuv','wxyz']
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
@@ -7,16 +5,13 @@ class Solution:
         if n==0:
             return []
         ans=[]
-        track=['']*n
+        path=['']*n
         def dfs(i):
             if i==n:
-                ans.append(''.join(track))
+                ans.append(''.join(path))
                 return
-            for c in MAP[int(digits[i])]:
-                track[i]=c
+            for s in MAP[int(digits[i])]:
+                path[i]=s
                 dfs(i+1)
         dfs(0)
         return ans
-
-
-

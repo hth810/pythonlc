@@ -5,8 +5,8 @@ class Solution:
     def countFairPairs(self, nums: List[int], lower: int, upper: int) -> int:
         nums.sort()
         ans=0
-        for j,v in enumerate(nums):
-            r=bisect_right(nums,upper-v,0,j)
-            l=bisect_left(nums,lower-v,0,j)
+        for i,c in enumerate(nums):
+            r=bisect_right(nums,upper-c,0,i)
+            l=bisect_left(nums,lower-c,0,i)
             ans+=r-l
         return ans

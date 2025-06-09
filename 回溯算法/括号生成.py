@@ -3,15 +3,15 @@ class Solution:
         m=n*2
         ans=[]
         path=['']*m
-        def backtrack(i,open):
+        def dfs(i,l):
             if i==m:
                 ans.append(''.join(path))
-            if open<n:
+                return
+            if l<n:
                 path[i]='('
-                backtrack(i+1,open+1)
-            if i<open*2:
+                dfs(i+1,l+1)
+            if i<l*2:
                 path[i]=')'
-                backtrack(i+1,open)
-        backtrack(0,0)
+                dfs(i+1,l)
+        dfs(0,0)
         return ans
-
